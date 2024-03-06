@@ -20,10 +20,10 @@ Prior to running the WA-focused build, you will need to update your input locati
 If you decide to keep things locally then the file path might look something like this:
 `wa_sc2/wa_data/wa-sequences.tar.xz`
 
-#Running the builds
+# Running the builds
 This ncov Nexstrain build sources data from Genbank and inclues a 2m, 4m, and 6m build. Once you have your inputs and have updated the `subsampled-background-builds.yaml` with the input location, you can run the pipeline. If you're running Nextstrain in a conda environment then you want to make sure you pull the latest ncov github repository updates first by running `git pull` in the `ncov` directory, activating the conda environment using `conda activate nextstrain` followed by `nextstrain update` to update Nextstrain. It's recommended to pull updates prior to running the pipeline. The same could also be said for this repo as well! :)
 
-#To run the builds using inputs stored on an AWS Bucket:
+# To run the builds using inputs stored on an AWS Bucket:
 You can configure your `AWS_ACCESS_KEY_ID` and `AWS_SECRET_ACCESS_KEY` in your AWS credentials file which can be accessed in terminal using `nano ~/.aws/credentials`, or you can simply export the environmental variables upon opening a terminal window using:
 `export AWS_ACCESS_KEY_ID=
 export AWS_SECRET_ACCESS_KEY=`
