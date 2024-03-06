@@ -1,7 +1,9 @@
 # snakemake
 rule all:
     input:
-        "wa_data/wa-sequences.tar.xz"
+    	"wa_data/global_metadata.tsv.xz",
+	"wa_data/global_aligned_sequences.fasta.xz",
+	"wa_data/wa-sequences.tar.xz"
 
 rule pull_global_data:
     output:
