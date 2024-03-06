@@ -12,7 +12,7 @@ The WA-Focused build includes county level metadata for the sequences that may n
 # Retrieving sequencing and metadata files for the WA-focused ncov nextstrain
 The SARS-CoV-2 datasets are maintained by the Nextstrain team. You can view the [list of remote datasets here](https://docs.nextstrain.org/projects/ncov/en/latest/reference/remote_inputs.html#remote-inputs-open-files).
 
-A workflow has been configured for you to pull the inputs that you will need for the WA-focused build. To run this workflow, first `cd wa_sc2` to navigate to the `wa_sc2 repository`. Next, to run the workflow, run `snakemake -s fetch_n_process.smk --cores 6`. You can specify different number of cores to use for the workflow based on your computing capacity.
+A workflow has been configured for you to pull the inputs that you will need for the WA-focused build. To run this workflow, first `cd wa_sc2` to navigate to the `wa_sc2 repository`. Next, to run the workflow, run `snakemake -s wa_scripts/fetch_n_process.smk --cores 6`. You can specify different number of cores to use for the workflow based on your computing capacity.
 
 # Configuring the WA-focused build
 Prior to running the WA-focused build, you will need to update your input locations in the `wa_sc2/wa_profiles/wa-subsampled-background-genbank/subsampled-background-builds.yaml` on lines 13 to 20. The `subsampled-background-builds.yaml` is set up for you to move your data into an S3 Bucket, but you can keep the files locally. If you decide to move the data to an S3 bucket the recommended path would be `s3://bucket-name/ncov/data/wa-sequences.tar.xz"` for both the metadata and sequencing data inputs.
