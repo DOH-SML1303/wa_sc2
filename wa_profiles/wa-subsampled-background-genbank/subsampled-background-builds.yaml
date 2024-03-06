@@ -1,0 +1,129 @@
+# These parameters are only used by the `export_for_nextstrain` rule and shouldn't need to be modified.
+# To modify the s3 _source_ bucket, specify this directly in the `inputs` section of the config.
+# P.S. These are intentionally set as top-level keys as this allows command-line overrides.
+S3_DST_BUCKET: "waphl-stephanie-lunn-bucket/ncov/data"
+S3_DST_COMPRESSION: "xz"
+S3_DST_ORIGINS: ["wa-seq"]
+upload:
+  - build-files
+
+# Update input location as needed.
+inputs:
+  - name: wa-seq
+    metadata: "s3://waphl-stephanie-lunn-bucket/ncov/data/wa-sequences.tar.xz"
+    sequences: "s3://waphl-stephanie-lunn-bucket/ncov/data/wa-sequences.tar.xz"
+#  - name: wa-seq02
+#    metadata: "s3://waphl-stephanie-lunn-bucket/ncov/data/wa-sequences02.tar"
+#    sequences: "s3://waphl-stephanie-lunn-bucket/ncov/data/wa-sequences02.tar"
+  - name: contextual
+    metadata: "s3://waphl-stephanie-lunn-bucket/ncov/data/global_metadata.tsv.xz"
+    sequences: "s3://waphl-stephanie-lunn-bucket/ncov/data/global_sequences.fasta.xz"
+  - name: references
+    metadata: "data/references_metadata.tsv"
+    sequences: "data/references_sequences.fasta"
+
+# Define custom rules
+custom_rules:
+  - wa_ncov_profile/wa_profiles/wa/add_to_builds.smk
+
+# Define custom auspice configuration to enable frequencies.
+# Define subsclades.
+files:
+  auspice_config: "wa_ncov_profile/wa_profiles/wa/auspice_config.json"
+
+# Define WA builds.
+builds:
+  wa_two_mon:
+    title: "Washington-focused SARS-CoV-2 genomic analysis: Past two months"
+    colors: wa_ncov_profile/wa_profiles/wa/colors.tsv
+    description: wa_ncov_profile/wa_profiles/wa/descriptions/two-months_description.md
+    division: Washington
+    subsampling_scheme: two-month-priority
+
+  wa_four_mon:
+    title: "Washington-focused SARS-CoV-2 genomic analysis: Past four months"
+    colors: wa_ncov_profile/wa_profiles/wa/colors.tsv
+    description: wa_ncov_profile/wa_profiles/wa/descriptions/four-months_description.md
+    division: Washington
+    subsampling_scheme: four-month-priority
+
+  wa_six_mon:
+    title: "Washington-focused SARS-CoV-2 genomic analysis: Past six months"
+    colors: wa_ncov_profile/wa_profiles/wa/colors.tsv
+    description: wa_ncov_profile/wa_profiles/wa/descriptions/six-months_description.md
+    division: Washington
+    subsampling_scheme: six-month-priority
+
+
+
+# Define subsampling scheme for builds. This scheme should include as much
+# local diversity for a given division as possible and contextual samples from
+# the rest of the USA and the world.
+subsampling:
+  two-month-priority:
+    local-focus:
+      min_date: --min-date {earliest_date}
+      query: --query "(country == 'USA' & division == '{division}')"
+    # Included to accurately reconstruct # of introductions
+    contextual-proximity:
+      min_date: --min-date 2020
+      max_sequences: 1500
+      query: --query "contextual == 'yes'"
+      priorities:
+        type: proximity
+        focus: local-focus
+    # Included for accurate clade timing
+    contextual-random:
+      min_date: --min-date 2020
+      max_sequences: 500
+      group_by: "month year"
+      query: --query "contextual == 'yes'"
+
+  four-month-priority:
+    local-focus:
+      min_date: --min-date {earliest_date}
+      query: --query "(country == 'USA' & division == '{division}')"
+      #max_sequences: 17000
+    # Included to accurately reconstruct # of introductions.
+    contextual-proximity:
+      min_date: --min-date 2020
+      max_sequences: 1000
+      query: --query "contextual == 'yes'"
+      priorities:
+        type: proximity
+        focus: local-focus
+    # Included for accurate clade timing.
+    contextual-random:
+      min_date: --min-date 2020
+      max_sequences: 500
+      group_by: "month year"
+      query: --query "contextual == 'yes'"
+
+  six-month-priority:
+    local-focus:
+      min_date: --min-date {earliest_date}
+      query: --query "(country == 'USA' & division == '{division}')"
+      #max_sequences: 17000
+    # Included to accurately reconstruct # of introductions.
+    contextual-proximity:
+      min_date: --min-date 2020
+      max_sequences: 1000
+      query: --query "contextual == 'yes'"
+      priorities:
+        type: proximity
+        focus: local-focus
+    # Included for accurate clade timing.
+    contextual-random:
+      min_date: --min-date 2020
+      max_sequences: 500
+      group_by: "month year"
+      query: --query "contextual == 'yes'"
+
+# mask sites in genomes
+# These are 1-indexed coordinates of sites that have been identified as prone to sequencing errors
+mask:
+  mask_sites: "21987 21846"
+
+cluster:
+    min_tips: 5
+    group_by: location

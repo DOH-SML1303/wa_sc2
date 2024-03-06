@@ -1,0 +1,1 @@
+/home/ubuntu/ncov/wa_ncov_profile/wa_profiles/wa/auspice_config.json
