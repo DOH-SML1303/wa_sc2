@@ -17,7 +17,7 @@ inputs:
 #    sequences: "s3://waphl-stephanie-lunn-bucket/ncov/data/wa-sequences02.tar"
   - name: contextual
     metadata: "s3://waphl-stephanie-lunn-bucket/ncov/data/global_metadata.tsv.xz"
-    sequences: "s3://waphl-stephanie-lunn-bucket/ncov/data/global_aligned_sequences.fasta.xz"
+    aligned: "s3://waphl-stephanie-lunn-bucket/ncov/data/global_aligned_sequences.fasta.xz"
   - name: references
     metadata: "data/references_metadata.tsv"
     sequences: "data/references_sequences.fasta"
