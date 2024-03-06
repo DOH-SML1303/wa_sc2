@@ -16,7 +16,7 @@ rule pull_full_data:
         full_sequences="wa_data/full_sequences.fasta.xz"
     params:
         full_metadata_url="https://data.nextstrain.org/files/ncov/open/metadata.tsv.gz",
-        full_aligned_sequences_url="https://data.nextstrain.org/files/ncov/open/sequences.fasta.xz"
+        full_sequences_url="https://data.nextstrain.org/files/ncov/open/sequences.fasta.xz"
     shell:
         """
         bash ./wa_scripts/pull_full_data.sh {params.full_metadata_url} {params.full_sequences_url} {output.full_metadata} {output.full_sequences}
