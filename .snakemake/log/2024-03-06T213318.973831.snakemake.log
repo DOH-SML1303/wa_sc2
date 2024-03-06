@@ -1,0 +1,4 @@
+Building DAG of jobs...
+MissingInputException in line 30 of /data/ncov/wa_sc2/wa_scripts/fetch_n_process.smk:
+Missing input files for rule filter_sequences:
+wa_data/full_sequences.fasta.xz
