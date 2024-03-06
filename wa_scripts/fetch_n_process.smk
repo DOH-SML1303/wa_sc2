@@ -18,13 +18,13 @@ rule pull_global_data:
 rule pull_full_data:
     output:
         full_metadata="wa_data/full_metadata.tsv.xz",
-        full_aligned_sequences="wa_data/full_aligned_sequences.fasta.xz"
+        full_sequences="wa_data/full_aligned_sequences.fasta.xz"
     params:
         full_metadata_url="https://data.nextstrain.org/files/ncov/open/metadata.tsv.gz",
-        full_aligned_sequences_url="https://data.nextstrain.org/files/ncov/open/sequences.fasta.xz"
+        full_sequences_url="https://data.nextstrain.org/files/ncov/open/sequences.fasta.xz"
     shell:
         """
-        bash ./wa_scripts/pull_full_data.sh {params.full_metadata_url} {params.full_aligned_sequences_url} {output.full_metadata} {output.full_aligned_sequences}
+        bash ./wa_scripts/pull_full_data.sh {params.full_metadata_url} {params.full_sequences_url} {output.full_metadata} {output.full_sequences}
         """
 
 rule filter_sequences:
