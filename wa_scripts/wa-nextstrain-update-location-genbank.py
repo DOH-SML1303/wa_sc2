@@ -3,7 +3,7 @@ import pandas as pd
 
 if __name__ == "__main__":
     if len(sys.argv) != 4:
-        print("Usage: python3 ./wa_scripts/wa-nextstrain-update-location-genbank_smk.py wa_data/test_filtered_metadata.tsv wa_data/metadata_2024-02-20.csv wa_data/test_wa-metadata.tsv")
+        print("Usage: python3 ./wa_scripts/wa-nextstrain-update-location-genbank_smk.py wa_data/test_filtered_metadata.tsv wa_data/county_metadata.csv wa_data/test_wa-metadata.tsv")
         sys.exit(1)
 
 input_file_1 = sys.argv[1]
