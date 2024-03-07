@@ -1,14 +1,14 @@
 #!/bin/bash
 
-global_metadata_url="$1"
-global_aligned_sequences_url="$2"
-global_metadata="$3"
-global_aligned_sequences="$4"
+full_metadata_url="$1"
+full_sequences_url="$2"
+full_metadata="$3"
+full_sequences="$4"
 
-wget -O "$global_metadata" "$global_metadata_url"
-chmod +x "$global_metadata"
+wget -O "$full_metadata" "$full_metadata_url"
+chmod +x "$full_metadata"
 
-wget -O "$global_aligned_sequences" "$global_aligned_sequences_url"
-chmod +x "$global_aligned_sequences"
+wget -O "$full_sequences" "$full_sequences_url"
+chmod +x "$full_sequences"
 
-echo "Global data pull complete"
+echo "Full SARS-CoV_2 dataset pull from Genbank is complete."
