@@ -1,4 +1,14 @@
 ./wa_data/county_metadata.csv
 .snakemake/
+./wa_data/county_metadata.csv
+./wa_data/filtered_metadata.tsv
+./wa_data/filtered_sequences.fasta
+./wa_data/full_metadata.tsv.gz
+./wa_data/full_sequences.fasta.xz
+./wa_data/global_aligned_sequences.fasta.xz
+./wa_data/global_metadata.tsv.xz
+./wa_data/tmp.tsv
+./wa_data/wa-metadata.tsv
+./wa_data/wa-sequences.tar.xz
 
 
