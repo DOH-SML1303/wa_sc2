@@ -1,6 +1,6 @@
 # wa_sc2
-WA-focused build for ncov Nextstrain
-Builds located Here:
+WA-focused ncov Nexstrain builds for genomic surveillance of SARS-CoV-2 in Washington state.
+Builds located here:
 - [Washington-focused SARS-CoV-2 genomic analysis: Past two months](https://nextstrain.org/groups/waphl/ncov/wa/2m)
 - [Washington-focused SARS-CoV-2 genomic analysis: Past four months](https://nextstrain.org/groups/waphl/ncov/wa/4m)
 - [Washington-focused SARS-CoV-2 genomic analysis: Past six months](https://nextstrain.org/groups/waphl/ncov/wa/6m)
