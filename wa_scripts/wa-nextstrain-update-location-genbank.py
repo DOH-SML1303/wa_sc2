@@ -3,7 +3,7 @@ import pandas as pd
 
 if __name__ == "__main__":
     if len(sys.argv) != 4:
-        print("Usage: python3 ./wa_scripts/wa-nextstrain-update-location-genbank_smk.py wa_data/test_filtered_metadata.tsv wa_data/county_metadata.csv wa_data/test_wa-metadata.tsv")
+        print("Usage: python3 ./wa_scripts/wa-nextstrain-update-location-genbank.py wa_data/filtered_metadata.tsv wa_data/county_metadata.csv wa_data/wa-metadata.tsv")
         sys.exit(1)
 
 input_file_1 = sys.argv[1]
@@ -26,7 +26,9 @@ doh_metadata = doh_metadata[~doh_metadata.index.duplicated(keep='first')]
 
 # create a new column called "location with the desired format
 # e.g. North America / USA / Washington / King County
-doh_metadata['location'] = 'North America / USA / Washington / ' + doh_metadata['County'] + ' County'
+# update as of 240307 this formatting is no longer needed
+#doh_metadata['location'] = 'North America / USA / Washington / ' + doh_metadata['County'] + ' County'
+doh_metadata['location'] = doh_metadata['County'] + ' County'
 
 # merge the dataframes on a common column
 merged_df = pd.merge(genbank_metadata, doh_metadata, on='strain')
@@ -41,7 +43,9 @@ merged_df.drop(['location_y'], axis=1, inplace=True)
 merged_df.rename(columns={'location_x': 'location'}, inplace=True)
 
 # fill nas in the location column
-merged_df['location'] = merged_df['location'].fillna('North America / USA / Washington')
+# previous formatting
+# merged_df['location'] = merged_df['location'].fillna('North America / USA / Washington')
+#merged_df['location'] = merged_df['location'].fillna('WA')
 
 # write out to tsv file
 merged_df.to_csv(output_file, sep='\t')
