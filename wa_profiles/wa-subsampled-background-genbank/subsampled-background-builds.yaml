@@ -12,45 +12,45 @@ inputs:
   - name: wa-seq
     metadata: "s3://waphl-stephanie-lunn-bucket/ncov/data/wa-sequences.tar.xz"
     sequences: "s3://waphl-stephanie-lunn-bucket/ncov/data/wa-sequences.tar.xz"
-#  - name: wa-seq02
+#  - name: wa-seq02 # for multiple inputs
 #    metadata: "s3://waphl-stephanie-lunn-bucket/ncov/data/wa-sequences02.tar"
 #    sequences: "s3://waphl-stephanie-lunn-bucket/ncov/data/wa-sequences02.tar"
   - name: contextual
-    metadata: "s3://waphl-stephanie-lunn-bucket/ncov/data/global_metadata.tsv.xz"
-    aligned: "s3://waphl-stephanie-lunn-bucket/ncov/data/global_aligned_sequences.fasta.xz"
+    metadata: "https://data.nextstrain.org/files/ncov/open/global/metadata.tsv.xz"
+    aligned: "https://data.nextstrain.org/files/ncov/open/global/aligned.fasta.xz"
   - name: references
     metadata: "data/references_metadata.tsv"
     sequences: "data/references_sequences.fasta"
 
 # Define custom rules
 custom_rules:
-  - wa_ncov_profile/wa_profiles/wa/add_to_builds.smk
+  - wa_sc2/wa_profiles/wa/add_to_builds.smk
 
 # Define custom auspice configuration to enable frequencies.
 # Define subsclades.
 files:
-  auspice_config: "wa_ncov_profile/wa_profiles/wa/auspice_config.json"
+  auspice_config: "wa_sc2/wa_profiles/wa/auspice_config.json"
 
 # Define WA builds.
 builds:
   wa_two_mon:
     title: "Washington-focused SARS-CoV-2 genomic analysis: Past two months"
-    colors: wa_ncov_profile/wa_profiles/wa/colors.tsv
-    description: wa_ncov_profile/wa_profiles/wa/descriptions/two-months_description.md
+    colors: wa_sc2/wa_profiles/wa/colors.tsv
+    description: wa_sc2/wa_profiles/wa/descriptions/two-months_description.md
     division: Washington
     subsampling_scheme: two-month-priority
 
   wa_four_mon:
     title: "Washington-focused SARS-CoV-2 genomic analysis: Past four months"
-    colors: wa_ncov_profile/wa_profiles/wa/colors.tsv
-    description: wa_ncov_profile/wa_profiles/wa/descriptions/four-months_description.md
+    colors: wa_sc2/wa_profiles/wa/colors.tsv
+    description: wa_sc2/wa_profiles/wa/descriptions/four-months_description.md
     division: Washington
     subsampling_scheme: four-month-priority
 
   wa_six_mon:
     title: "Washington-focused SARS-CoV-2 genomic analysis: Past six months"
-    colors: wa_ncov_profile/wa_profiles/wa/colors.tsv
-    description: wa_ncov_profile/wa_profiles/wa/descriptions/six-months_description.md
+    colors: wa_sc2/wa_profiles/wa/colors.tsv
+    description: wa_sc2/wa_profiles/wa/descriptions/six-months_description.md
     division: Washington
     subsampling_scheme: six-month-priority
 
