@@ -24,19 +24,19 @@ inputs:
 
 # Define custom rules
 custom_rules:
-  - 2023/wa_profiles/wa/add_to_builds.smk
+  - wa_sc2/wa_profiles/wa/add_to_builds.smk
 
 # Define custom auspice configuration to enable frequencies.
 # Define subsclades.
 files:
-  auspice_config: "2023/wa_profiles/wa/auspice_config.json"
+  auspice_config: "wa_sc2/wa_profiles/wa/auspice_config.json"
 
 # Define WA builds.
 builds:
   wa_1yr:
     title: "Washington-focused SARS-CoV-2 genomic analysis: 2023"
-    colors: 2023/wa_profiles/wa/colors.tsv
-    description: 2023/wa_profiles/wa/descriptions/year_description.md
+    colors: wa_sc2/wa_profiles/wa/colors.tsv
+    description: wa_sc2/wa_profiles/wa/descriptions/year_description.md
     division: Washington
     subsampling_scheme: one-year-priority
 
