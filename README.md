@@ -1,5 +1,9 @@
 # wa_sc2
 WA-focused build for ncov Nextstrain
+Builds located Here:
+- [Washington-focused SARS-CoV-2 genomic analysis: Past two months](https://nextstrain.org/groups/waphl/ncov/wa/2m)
+- [Washington-focused SARS-CoV-2 genomic analysis: Past four months](https://nextstrain.org/groups/waphl/ncov/wa/4m)
+- [Washington-focused SARS-CoV-2 genomic analysis: Past six months](https://nextstrain.org/groups/waphl/ncov/wa/6m)
 
 # Setup
 First, install the [ncov nextstrain pipeline](https://github.com/nextstrain/ncov) and clone the ncov repository using `git clone https://github.com/nextstrain/ncov` or `gh repo clone nextstrain/ncov`.
