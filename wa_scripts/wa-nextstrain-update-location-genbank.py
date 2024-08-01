@@ -48,6 +48,7 @@ def main(input_file_1, input_file_2, output_file):
     doh_metadata = drop_index_dup(doh_metadata)
     merged_df = update_location(doh_metadata, genbank_metadata)
     merged_df.to_csv(output_file, sep='\t')
+    print('Success! Exit Code 0')
     print("County level metadata has been added to the metadata file")
 
 if __name__ == "__main__":
