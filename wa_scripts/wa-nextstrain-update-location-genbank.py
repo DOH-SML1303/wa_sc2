@@ -28,7 +28,8 @@ def drop_index_dup(doh_metadata):
 # create a new column called "location with the desired format
 # e.g. North America / USA / Washington / King County
 # update as of 240307 this formatting is no longer needed
-#doh_metadata['location'] = 'North America / USA / Washington / ' + doh_metadata['County'] + ' County'
+
+# update location
 def update_location(doh_metadata, genbank_metadata):
     doh_metadata['location'] = doh_metadata['County'] + ' County'
     # merge the dataframes on a common column
@@ -41,6 +42,7 @@ def update_location(doh_metadata, genbank_metadata):
     merged_df.rename(columns={'location_x': 'location'}, inplace=True)
     return merged_df
 
+# processing the metadata files
 def main(input_file_1, input_file_2, output_file):
     genbank_metadata, doh_metadata = read_files(input_file_1, input_file_2)
     doh_metadata = rename_columns(doh_metadata)
