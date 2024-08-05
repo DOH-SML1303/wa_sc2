@@ -1,5 +1,19 @@
+import argparse
 import sys
 import pandas as pd
+
+parser = argparse.ArgumentParser(description='This script is part of the snakemake workflow that uses the \
+    filtered metadata file from the Genbank ingest, the WA DOH metadata file, and updates the filtered \
+    metadata file with the location information, specifically the Washington state counties for the \
+    sequences in the file that will be used for Nextstrain. As a result, the build will display the \
+    county location on the map. Example link to the build here: https://nextstrain.org/groups/waphl/ncov/wa/6m \n \
+    Since this script is compatible with the wa_sc2 workflow to ingest the sequencing and metadata for the \
+    WA-focused SARS-CoV-2 build, the file names should match in order for the entire workflow to run.')
+parser.add_argument(help="File path to the input and output metadata files",
+    type=str, dest="wa_data/filtered_metadata.tsv, wa_data/county_metadata.csv, wa_data/wa-metadata.tsv")
+
+args = parser.parse_args()
+print(args.help)
 
 # read in the metadata files to be used for updating
 def read_files(input_file_1, input_file_2):
