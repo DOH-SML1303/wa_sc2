@@ -33,7 +33,7 @@ def drop_index_dup(doh_metadata):
 def update_location(doh_metadata, genbank_metadata):
     doh_metadata['location'] = doh_metadata['County'] + ' County'
     # merge the dataframes on a common column
-    merged_df = pd.merge(genbank_metadata, doh_metadata, on='strain')
+    merged_df = pd.merge(genbank_metadata, doh_metadata, on='strain', how='left')
     # update the location column in the genbank dataframe
     merged_df['location_x'] = merged_df['location_y']
     # drop the extra column (Location_y)
@@ -42,6 +42,22 @@ def update_location(doh_metadata, genbank_metadata):
     merged_df.rename(columns={'location_x': 'location'}, inplace=True)
     return merged_df
 
+
+# update division to Washington if division is set to USA
+def update_division(merged_df):
+    df = pd.DataFrame(merged_df)
+    if 'division' in df:
+        df.loc[df['division'] == 'USA', 'division'] = 'Washington'
+    return df
+
+def specify_dup_counties(df):
+    wa_counties = ['Lincoln County']
+    df['location'] = df['location'].apply(
+        lambda loc: f"{loc} WA" if loc in wa_counties else loc
+    )
+    return df
+
+
 # processing the metadata files
 def main(input_file_1, input_file_2, output_file):
     genbank_metadata, doh_metadata = read_files(input_file_1, input_file_2)
@@ -49,9 +65,20 @@ def main(input_file_1, input_file_2, output_file):
     doh_metadata = set_index(doh_metadata)
     doh_metadata = drop_index_dup(doh_metadata)
     merged_df = update_location(doh_metadata, genbank_metadata)
-    merged_df.to_csv(output_file, sep='\t')
+    df = update_division(merged_df)
+    df = specify_dup_counties(df)
+    df.to_csv(output_file, sep='\t')
     print('Success! Exit Code 0')
     print("County level metadata has been added to the metadata file")
+    print("Genbank Metadata Shape:", genbank_metadata.shape)
+    print("DOH Metadata Shape:", doh_metadata.shape)
+    print("DOH Metadata Columns After Rename:", doh_metadata.columns.tolist())
+    print("Unique Strains in DOH Metadata:", doh_metadata.index.unique())
+    print("DOH Metadata Shape After Dropping Duplicates:", doh_metadata.shape)
+    print("Merged Dataframe shape:", merged_df.shape)
+    print("Final DataFrame Shape:", df.shape)
+    print("Final DataFrame Sample:\n", df.head())
+
 
 if __name__ == "__main__":
     if len(sys.argv) != 4:
