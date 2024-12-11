@@ -1,17 +1,17 @@
 # These parameters are only used by the `export_for_nextstrain` rule and shouldn't need to be modified.
 # To modify the s3 _source_ bucket, specify this directly in the `inputs` section of the config.
 # P.S. These are intentionally set as top-level keys as this allows command-line overrides.
-S3_DST_BUCKET: "waphl-stephanie-lunn-bucket/ncov/data"
-S3_DST_COMPRESSION: "xz"
-S3_DST_ORIGINS: ["wa-seq"]
-upload:
-  - build-files
+#S3_DST_BUCKET: "waphl-stephanie-lunn-bucket/ncov/data"
+#S3_DST_COMPRESSION: "xz"
+#S3_DST_ORIGINS: ["wa-seq"]
+#upload:
+#  - build-files
 
 # Update input location as needed.
 inputs:
   - name: wa-seq
-    metadata: "s3://waphl-stephanie-lunn-bucket/ncov/data/wa-sequences.tar.xz"
-    sequences: "s3://waphl-stephanie-lunn-bucket/ncov/data/wa-sequences.tar.xz"
+    metadata: "wa_sc2/wa_data/wa-sequences.tar.xz"
+    sequences: "wa_sc2/wa_data/wa-sequences.tar.xz"
 #  - name: wa-seq02 # for multiple inputs
 #    metadata: "s3://waphl-stephanie-lunn-bucket/ncov/data/wa-sequences02.tar"
 #    sequences: "s3://waphl-stephanie-lunn-bucket/ncov/data/wa-sequences02.tar"
@@ -64,6 +64,7 @@ subsampling:
     local-focus:
       min_date: --min-date {earliest_date}
       query: --query "(country == 'USA' & division == '{division}')"
+      other_filters: "--include-where 'division=Washington'"
     # Included to accurately reconstruct # of introductions
     contextual-proximity:
       min_date: --min-date 2020
@@ -83,6 +84,7 @@ subsampling:
     local-focus:
       min_date: --min-date {earliest_date}
       query: --query "(country == 'USA' & division == '{division}')"
+      other_filters: "--include-where 'division=Washington'"
       #max_sequences: 17000
     # Included to accurately reconstruct # of introductions.
     contextual-proximity:
@@ -103,6 +105,7 @@ subsampling:
     local-focus:
       min_date: --min-date {earliest_date}
       query: --query "(country == 'USA' & division == '{division}')"
+      other_filters: "--include-where 'division=Washington'"
       #max_sequences: 17000
     # Included to accurately reconstruct # of introductions.
     contextual-proximity:
