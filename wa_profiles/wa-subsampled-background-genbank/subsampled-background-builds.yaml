@@ -10,8 +10,8 @@
 # Update input location as needed.
 inputs:
   - name: wa-seq
-    metadata: "wa_sc2/wa_data/wa-sequences.tar.xz"
-    sequences: "wa_sc2/wa_data/wa-sequences.tar.xz"
+    metadata: "https://data.nextstrain.org/files/ncov/open/metadata.tsv.zst"
+    aligned: "https://data.nextstrain.org/files/ncov/open/aligned.fasta.zst"
 #  - name: wa-seq02 # for multiple inputs
 #    metadata: "s3://waphl-stephanie-lunn-bucket/ncov/data/wa-sequences02.tar"
 #    sequences: "s3://waphl-stephanie-lunn-bucket/ncov/data/wa-sequences02.tar"
@@ -33,19 +33,19 @@ files:
 
 # Define WA builds.
 builds:
-  wa_two_mon:
-    title: "Washington-focused SARS-CoV-2 genomic analysis: Past two months"
-    colors: wa_sc2/wa_profiles/wa/colors.tsv
-    description: wa_sc2/wa_profiles/wa/descriptions/two-months_description.md
-    division: Washington
-    subsampling_scheme: two-month-priority
+#  wa_two_mon:
+#    title: "Washington-focused SARS-CoV-2 genomic analysis: Past two months"
+#    colors: wa_sc2/wa_profiles/wa/colors.tsv
+#    description: wa_sc2/wa_profiles/wa/descriptions/two-months_description.md
+#    division: Washington
+#    subsampling_scheme: two-month-priority
 
-  wa_four_mon:
-    title: "Washington-focused SARS-CoV-2 genomic analysis: Past four months"
-    colors: wa_sc2/wa_profiles/wa/colors.tsv
-    description: wa_sc2/wa_profiles/wa/descriptions/four-months_description.md
-    division: Washington
-    subsampling_scheme: four-month-priority
+#  wa_four_mon:
+#    title: "Washington-focused SARS-CoV-2 genomic analysis: Past four months"
+#    colors: wa_sc2/wa_profiles/wa/colors.tsv
+#    description: wa_sc2/wa_profiles/wa/descriptions/four-months_description.md
+#    division: Washington
+#    subsampling_scheme: four-month-priority
 
   wa_six_mon:
     title: "Washington-focused SARS-CoV-2 genomic analysis: Past six months"
@@ -60,46 +60,45 @@ builds:
 # local diversity for a given division as possible and contextual samples from
 # the rest of the USA and the world.
 subsampling:
-  two-month-priority:
-    local-focus:
-      min_date: --min-date {earliest_date}
-      query: --query "(country == 'USA' & division == '{division}')"
-      other_filters: "--include-where 'division=Washington'"
+#  two-month-priority:
+#    local-focus:
+#      min_date: --min-date {earliest_date}
+#      query: --query "(country == 'USA' & division == '{division}')"
+#      other_filters: "--include-where 'division=Washington'"
     # Included to accurately reconstruct # of introductions
-    contextual-proximity:
-      min_date: --min-date 2020
-      max_sequences: 1500
-      query: --query "contextual == 'yes'"
-      priorities:
-        type: proximity
-        focus: local-focus
+#    contextual-proximity:
+#      min_date: --min-date 2020
+#      max_sequences: 1500
+#      query: --query "contextual == 'yes'"
+#      priorities:
+#        type: proximity
+#        focus: local-focus
     # Included for accurate clade timing
-    contextual-random:
-      min_date: --min-date 2020
-      max_sequences: 500
-      group_by: "month year"
-      query: --query "contextual == 'yes'"
+#    contextual-random:
+#      min_date: --min-date 2020
+#      max_sequences: 500
+#      group_by: "month year"
+#      query: --query "contextual == 'yes'"
 
-  four-month-priority:
-    local-focus:
-      min_date: --min-date {earliest_date}
-      query: --query "(country == 'USA' & division == '{division}')"
-      other_filters: "--include-where 'division=Washington'"
-      #max_sequences: 17000
+#  four-month-priority:
+#    local-focus:
+#      min_date: --min-date {earliest_date}
+#      query: --query "(country == 'USA' & division == '{division}')"
+#      other_filters: "--include-where 'division=Washington'"
     # Included to accurately reconstruct # of introductions.
-    contextual-proximity:
-      min_date: --min-date 2020
-      max_sequences: 1000
-      query: --query "contextual == 'yes'"
-      priorities:
-        type: proximity
-        focus: local-focus
+#    contextual-proximity:
+#      min_date: --min-date 2020
+#      max_sequences: 1000
+#      query: --query "contextual == 'yes'"
+#      priorities:
+#        type: proximity
+#        focus: local-focus
     # Included for accurate clade timing.
-    contextual-random:
-      min_date: --min-date 2020
-      max_sequences: 500
-      group_by: "month year"
-      query: --query "contextual == 'yes'"
+#    contextual-random:
+#      min_date: --min-date 2020
+#      max_sequences: 500
+#      group_by: "month year"
+#      query: --query "contextual == 'yes'"
 
   six-month-priority:
     local-focus:
